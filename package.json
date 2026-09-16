@@ -1,0 +1,11 @@
+{
+  "name": "agenti",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('Static Netlify build completed successfully')\""
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
