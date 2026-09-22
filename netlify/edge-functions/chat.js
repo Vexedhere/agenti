@@ -5,7 +5,9 @@ const MAX_BODY_BYTES = 120000;
 const MAX_MESSAGES = 40;
 const MAX_MESSAGE_CHARS = 12000;
 const MODEL = "openrouter/free";
-const FREE_DAILY_LIMIT = 20;
+const FREE_CODING_DAILY_LIMIT = 5;
+const FREE_ADVANCED_DAILY_LIMIT = 5;
+const FREE_CODE_MAX_CHARS = 6000;
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
@@ -125,6 +127,12 @@ export default async function handler(request, context) {
     body = await request.json();
   } catch {
     return json({ error: "Invalid JSON request." }, 400);
+  }
+
+  const feature = ["general","coding","study","writing","summarize","brainstorm","advanced"].includes(body?.feature) ? body.feature : "general";
+  const usage = await consumeFeatureLimit(user.id, tier, feature);
+  if (!usage.allowed) {
+    return json({ error: `Free plan ${feature} limit reached.`, code: "FEATURE_LIMIT_REACHED", feature, used: usage.used, limit: usage.limit, upgradeUrl: "https://tiers.sparkagent.in.net" }, 429);
   }
 
   const incoming = Array.isArray(body?.messages) ? body.messages : [];
