@@ -1,8 +1,11 @@
+import { getStore } from "@netlify/blobs";
+
 const ALLOWED_ORIGIN = "https://agent.sparkagent.in.net";
 const MAX_BODY_BYTES = 120000;
 const MAX_MESSAGES = 40;
 const MAX_MESSAGE_CHARS = 12000;
 const MODEL = "openrouter/free";
+const FREE_DAILY_LIMIT = 20;
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
@@ -11,9 +14,63 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
     "cache-control": "no-store",
     "access-control-allow-origin": ALLOWED_ORIGIN,
     "access-control-allow-methods": "POST, OPTIONS",
-    "access-control-allow-headers": "content-type",
+    "access-control-allow-headers": "content-type, authorization",
   },
 });
+
+async function getAuthenticatedUser(accessToken) {
+  if (!accessToken) return null;
+  const supabaseUrl = Netlify.env.get("SUPABASE_URL");
+  const supabaseAnonKey = Netlify.env.get("SUPABASE_ANON_KEY");
+  if (!supabaseUrl || !supabaseAnonKey) return null;
+
+  const response = await fetch(`${supabaseUrl}/auth/v1/user`, {
+    headers: {
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  if (!response.ok) return null;
+  return await response.json();
+}
+
+async function getTier(userId, accessToken) {
+  const supabaseUrl = Netlify.env.get("SUPABASE_URL");
+  const supabaseAnonKey = Netlify.env.get("SUPABASE_ANON_KEY");
+  if (!supabaseUrl || !supabaseAnonKey) return "FREE";
+
+  const response = await fetch(
+    `${supabaseUrl}/rest/v1/profiles?select=tier&id=eq.${encodeURIComponent(userId)}&limit=1`,
+    {
+      headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  if (!response.ok) return "FREE";
+  const rows = await response.json();
+  return String(rows?.[0]?.tier || "FREE").toUpperCase();
+}
+
+async function consumeDailyLimit(userId, tier) {
+  if (tier !== "FREE") return { allowed: true, used: 0, limit: null };
+
+  const store = getStore("sparkagent-usage");
+  const today = new Date().toISOString().slice(0, 10);
+  const key = `daily/${userId}/${today}`;
+  const current = (await store.get(key, { type: "json", consistency: "strong" })) || { count: 0 };
+  const used = Number(current.count || 0);
+
+  if (used >= FREE_DAILY_LIMIT) {
+    return { allowed: false, used, limit: FREE_DAILY_LIMIT };
+  }
+
+  await store.setJSON(key, { count: used + 1, updatedAt: new Date().toISOString() });
+  return { allowed: true, used: used + 1, limit: FREE_DAILY_LIMIT };
+}
 
 export default async function handler(request, context) {
   const origin = request.headers.get("origin");
@@ -24,7 +81,7 @@ export default async function handler(request, context) {
       headers: {
         "access-control-allow-origin": ALLOWED_ORIGIN,
         "access-control-allow-methods": "POST, OPTIONS",
-        "access-control-allow-headers": "content-type",
+        "access-control-allow-headers": "content-type, authorization",
         "access-control-max-age": "86400",
       },
     });
@@ -38,6 +95,27 @@ export default async function handler(request, context) {
 
   const apiKey = Netlify.env.get("OPENROUTER_API_KEY");
   if (!apiKey) return json({ error: "SparkAgent AI is not configured yet." }, 503);
+
+  const authHeader = request.headers.get("authorization") || "";
+  const accessToken = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+  const user = await getAuthenticatedUser(accessToken);
+
+  if (!user?.id) {
+    return json({ error: "Please sign in to use SparkAgent." }, 401);
+  }
+
+  const tier = await getTier(user.id, accessToken);
+  const usage = await consumeDailyLimit(user.id, tier);
+
+  if (!usage.allowed) {
+    return json({
+      error: "Free plan daily limit reached.",
+      code: "DAILY_LIMIT_REACHED",
+      used: usage.used,
+      limit: usage.limit,
+      upgradeUrl: "https://tiers.sparkagent.in.net",
+    }, 429);
+  }
 
   const contentLength = Number(request.headers.get("content-length") || 0);
   if (contentLength > MAX_BODY_BYTES) return json({ error: "Request is too large." }, 413);
@@ -93,8 +171,11 @@ export default async function handler(request, context) {
       "connection": "keep-alive",
       "access-control-allow-origin": ALLOWED_ORIGIN,
       "access-control-allow-methods": "POST, OPTIONS",
-      "access-control-allow-headers": "content-type",
+      "access-control-allow-headers": "content-type, authorization",
       "x-accel-buffering": "no",
+      "x-sparkagent-tier": tier,
+      "x-sparkagent-daily-used": String(usage.used),
+      "x-sparkagent-daily-limit": usage.limit == null ? "unlimited" : String(usage.limit),
     },
   });
 }
