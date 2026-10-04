@@ -1,4 +1,19 @@
-import { getStore } from "@netlify/blobs";
+im
+
+async function consumeFeatureLimit(userId, tier, feature) {
+  if (tier !== "FREE") return { allowed: true, used: 0, limit: null };
+  if (feature !== "coding" && feature !== "advanced") return { allowed: true, used: 0, limit: null };
+  const limit = feature === "coding" ? FREE_CODING_DAILY_LIMIT : FREE_ADVANCED_DAILY_LIMIT;
+  const store = getStore("sparkagent-usage");
+  const today = new Date().toISOString().slice(0, 10);
+  const key = `feature/${feature}/${userId}/${today}`;
+  const current = (await store.get(key, { type: "json", consistency: "strong" })) || { count: 0 };
+  const used = Number(current.count || 0);
+  if (used >= limit) return { allowed: false, used, limit };
+  await store.setJSON(key, { count: used + 1, updatedAt: new Date().toISOString() });
+  return { allowed: true, used: used + 1, limit };
+}
+port { getStore } from "@netlify/blobs";
 
 const ALLOWED_ORIGIN = "https://agent.sparkagent.in.net";
 const MAX_BODY_BYTES = 120000;
@@ -8,6 +23,7 @@ const MODEL = "openrouter/free";
 const FREE_CODING_DAILY_LIMIT = 5;
 const FREE_ADVANCED_DAILY_LIMIT = 5;
 const FREE_CODE_MAX_CHARS = 6000;
+const FREE_DAILY_LIMIT = 30;
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {
   status,
