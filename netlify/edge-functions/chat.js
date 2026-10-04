@@ -1,4 +1,4 @@
-import { getStore } from "netlify:blobs";
+import { getStore } from "@netlify/blobs";
 
 async function consumeFeatureLimit(userId, tier, feature) {
   if (tier !== "FREE") return { allowed: true, used: 0, limit: null };
