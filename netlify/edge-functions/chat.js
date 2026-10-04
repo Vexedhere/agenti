@@ -1,3 +1,5 @@
+import { getStore } from "netlify:blobs";
+
 async function consumeFeatureLimit(userId, tier, feature) {
   if (tier !== "FREE") return { allowed: true, used: 0, limit: null };
   if (feature !== "coding" && feature !== "advanced") return { allowed: true, used: 0, limit: null };
@@ -11,7 +13,6 @@ async function consumeFeatureLimit(userId, tier, feature) {
   await store.setJSON(key, { count: used + 1, updatedAt: new Date().toISOString() });
   return { allowed: true, used: used + 1, limit };
 }
-import { getStore } from "@netlify/blobs";
 
 const ALLOWED_ORIGIN = "https://agent.sparkagent.in.net";
 const MAX_BODY_BYTES = 120000;
