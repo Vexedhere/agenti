@@ -123,23 +123,24 @@ html,body{background:var(--paper);color:var(--ink)}
       <form class="composer" id="composer">
         <div class="mode-row">
           <button class="mode-picker" id="modePickerBtn" type="button" aria-expanded="false" aria-controls="modeMenu">
-            <span class="mode-picker-icon">✦</span><span class="mode-picker-copy"><strong id="modeTitle">Auto Pilot</strong><small id="modeSubtitle">Balanced everyday help</small></span><span class="mode-picker-caret">⌄</span>
+            <span class="mode-picker-icon">✦</span><span class="mode-picker-copy"><strong id="modeTitle">Spark 2.1 · Swift</strong><small id="modeSubtitle">Everyday intelligence · v2.1</small></span><span class="mode-picker-caret">⌄</span>
           </button>
           <div class="mode-menu" id="modeMenu" hidden>
-            <div class="mode-group">FREE TO USE</div>
-            <button type="button" class="mode-option selected" data-mode="auto"><span class="mode-option-icon">✦</span><span class="mode-option-copy"><strong>Auto Pilot</strong><small>Balanced everyday help</small></span><span class="mode-tier free">FREE</span></button>
-            <button type="button" class="mode-option" data-mode="quick"><span class="mode-option-icon">ϟ</span><span class="mode-option-copy"><strong>Quick Reply</strong><small>Short, direct answers</small></span><span class="mode-tier free">FREE</span></button>
-            <button type="button" class="mode-option" data-mode="study"><span class="mode-option-icon">◎</span><span class="mode-option-copy"><strong>Study Room</strong><small>Learn with examples</small></span><span class="mode-tier free">FREE</span></button>
-            <div class="mode-group">SPARK PRO</div>
-            <button type="button" class="mode-option" data-mode="coding" data-tier="Spark Pro"><span class="mode-option-icon">⌘</span><span class="mode-option-copy"><strong>Build Lab</strong><small>Code, debug and plan builds</small></span><span class="mode-tier locked">LOCKED</span></button>
-            <button type="button" class="mode-option" data-mode="writer" data-tier="Spark Pro"><span class="mode-option-icon">✎</span><span class="mode-option-copy"><strong>Writer's Desk</strong><small>Drafts and polished writing</small></span><span class="mode-tier locked">LOCKED</span></button>
-            <button type="button" class="mode-option" data-mode="research" data-tier="Spark Pro"><span class="mode-option-icon">⌕</span><span class="mode-option-copy"><strong>Research Desk</strong><small>Structured analysis</small></span><span class="mode-tier locked">LOCKED</span></button>
-            <button type="button" class="mode-option" data-mode="deep" data-tier="Spark Pro"><span class="mode-option-icon">◈</span><span class="mode-option-copy"><strong>Deep Think</strong><small>Complex decisions and trade-offs</small></span><span class="mode-tier locked">LOCKED</span></button>
-            <div class="mode-group">SPARK MAX</div>
-            <button type="button" class="mode-option" data-mode="strategist" data-tier="Spark MAX"><span class="mode-option-icon">↗</span><span class="mode-option-copy"><strong>Strategy Studio</strong><small>Plans, priorities and milestones</small></span><span class="mode-tier locked">LOCKED</span></button>
-            <button type="button" class="mode-option" data-mode="creative" data-tier="Spark MAX"><span class="mode-option-icon">✧</span><span class="mode-option-copy"><strong>Creative Studio</strong><small>Fresh concepts and ideas</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <div class="mode-group">SPARK FREE · INCLUDED</div>
+            <button type="button" class="mode-option selected" data-mode="auto"><span class="mode-option-icon">✦</span><span class="mode-option-copy"><strong>Spark 2.1 · Swift</strong><small>Everyday intelligence · v2.1</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="quick"><span class="mode-option-icon">ϟ</span><span class="mode-option-copy"><strong>Spark 2.1 · Snap</strong><small>Fast answers · v2.1</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="study"><span class="mode-option-icon">◎</span><span class="mode-option-copy"><strong>Spark 2.2 · Scholaris</strong><small>Guided learning · v2.2</small></span><span class="mode-tier free">FREE</span></button>
+            <div class="mode-group">SPARK PRO · ADVANCED WORKSPACE</div>
+            <button type="button" class="mode-option" data-mode="coding"><span class="mode-option-icon">⌘</span><span class="mode-option-copy"><strong>Spark 2.4 · Forge</strong><small>3 free coding builds per day</small></span><span class="mode-tier free">3/DAY</span></button>
+            <button type="button" class="mode-option" data-mode="writer" data-tier="Spark Pro"><span class="mode-option-icon">✎</span><span class="mode-option-copy"><strong>Spark 2.4 · Quill</strong><small>Draft, refine and rewrite</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="research" data-tier="Spark Pro"><span class="mode-option-icon">⌕</span><span class="mode-option-copy"><strong>Spark 3.0 · Atlas</strong><small>Research synthesis and source-aware analysis</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="deep" data-tier="Spark Pro"><span class="mode-option-icon">◈</span><span class="mode-option-copy"><strong>Spark 3.0 · Synapse</strong><small>Multi-step reasoning and trade-offs</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <div class="mode-group">SPARK MAX · DEEP WORKFLOWS</div>
+            <button type="button" class="mode-option" data-mode="strategist" data-tier="Spark MAX"><span class="mode-option-icon">↗</span><span class="mode-option-copy"><strong>Spark 3.2 · Parallax</strong><small>Long-horizon planning and decision maps</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="creative" data-tier="Spark MAX"><span class="mode-option-icon">✧</span><span class="mode-option-copy"><strong>Spark 3.2 · Dreamweave</strong><small>Original concepts and creative exploration</small></span><span class="mode-tier locked">LOCKED</span></button>
           </div>
         </div>
+        <div class="mode-notice" id="buildQuotaNote"><span id="buildQuotaText">Free Forge builds: 3 of 3 available today.</span><a href="https://tiers.sparkagent.in.net">More with Pro ↗</a></div>
         <div class="mode-notice" id="modeNotice" hidden><span id="modeNoticeText"></span><a href="https://tiers.sparkagent.in.net">Explore plans ↗</a><button type="button" id="closeModeNotice" aria-label="Dismiss notice">×</button></div>
         <textarea id="promptInput" rows="1" maxlength="12000" placeholder="Ask anything, or tell SparkAgent what you want to build…" aria-label="Message SparkAgent"></textarea>
         <div class="composer-bottom"><span class="hint">Enter to send · Shift + Enter for a new line</span><div class="composer-tools"><button type="button" class="tool-btn" id="voiceInput" title="Speak your message" aria-label="Voice input">⌁</button><button type="submit" class="send-btn" id="sendButton" aria-label="Send message">↑</button></div></div>
@@ -153,22 +154,25 @@ html,body{background:var(--paper);color:var(--ink)}
 (() => {
   const LOGIN_URL = "https://try.sparkagent.in.net/#auth";
   const API_URL = "https://cvzvpgwovqkplntfztsk.supabase.co/functions/v1/sparkagent-chat";
-  const SESSION_URL = "https://try.sparkagent.in.net/api/session";
+  const SESSION_URL = "https://try.sparkagent.in.net/api/session"; // Legacy auth dependency; migrate before retiring the old host.
   const $ = (id) => document.getElementById(id);
   const input = $("promptInput"), form = $("composer"), messagesEl = $("messages");
   let messages = [], busy = false, abortController = null, profile = null, mode = "auto", history = [];
+  const buildDay = new Date().toISOString().slice(0,10), buildKey = "sparkagent.forge.builds."+buildDay;
+  function buildsUsed(){try{return Math.max(0,Math.min(3,Number(localStorage.getItem(buildKey)||0)));}catch{return 0;}}
+  function updateBuildQuota(){const used=buildsUsed();$("buildQuotaText").textContent=`Free Forge builds: ${Math.max(0,3-used)} of 3 available today.`;$("buildQuotaNote").hidden=false;}
   try { const saved = localStorage.getItem("sparkagent.guest.chat.v2"); if (saved) messages = JSON.parse(saved); } catch {}
   try { const savedHistory = localStorage.getItem("sparkagent.guest.history.v1"); if (savedHistory) history = JSON.parse(savedHistory); } catch {}
   const modeDetails = {
-    auto: { title: "Auto Pilot", subtitle: "Balanced everyday help" },
-    quick: { title: "Quick Reply", subtitle: "Short, direct answers" },
-    study: { title: "Study Room", subtitle: "Learn with examples" },
-    coding: { title: "Build Lab", subtitle: "Code, debug and plan builds" },
-    writer: { title: "Writer's Desk", subtitle: "Drafts and polished writing" },
-    research: { title: "Research Desk", subtitle: "Structured analysis" },
-    deep: { title: "Deep Think", subtitle: "Complex decisions and trade-offs" },
-    strategist: { title: "Strategy Studio", subtitle: "Plans, priorities and milestones" },
-    creative: { title: "Creative Studio", subtitle: "Fresh concepts and ideas" }
+    auto: { title: "Spark 2.1 · Swift", subtitle: "Everyday intelligence · v2.1" },
+    quick: { title: "Spark 2.1 · Snap", subtitle: "Fast answers · v2.1" },
+    study: { title: "Spark 2.2 · Scholaris", subtitle: "Guided learning · v2.2" },
+    coding: { title: "Spark 2.4 · Forge", subtitle: "Free builds: 3 per day" },
+    writer: { title: "Spark 2.4 · Quill", subtitle: "Draft, refine and rewrite" },
+    research: { title: "Spark 3.0 · Atlas", subtitle: "Research synthesis and source-aware analysis" },
+    deep: { title: "Spark 3.0 · Synapse", subtitle: "Multi-step reasoning and trade-offs" },
+    strategist: { title: "Spark 3.2 · Parallax", subtitle: "Long-horizon planning and decision maps" },
+    creative: { title: "Spark 3.2 · Dreamweave", subtitle: "Original concepts and creative exploration" }
   };
   function updateModeLabel() {
     const details = modeDetails[mode] || modeDetails.auto;
@@ -194,6 +198,7 @@ html,body{background:var(--paper);color:var(--ink)}
     mode = btn.dataset.mode || "auto";
     hideModeNotice();
     updateModeLabel();
+    updateBuildQuota();
   }));
   $("closeModeNotice").addEventListener("click", hideModeNotice);
   document.addEventListener("click", e => {
@@ -251,6 +256,7 @@ html,body{background:var(--paper);color:var(--ink)}
   async function send(text) {
     if(busy){stop();return;}
     const value=(text ?? input.value).trim();if(!value)return;
+    if(mode==="coding" && buildsUsed()>=3){showError("You have used your 3 free Forge builds for today. Your regular SparkAgent messages remain available. Try again tomorrow or explore Spark Pro.");return;}
     clearError(); messages.push({role:"user",content:value}); messages.push({role:"assistant",content:""});input.value="";input.style.height="auto";render();setBusy(true);
     const assistantIndex=messages.length-1;abortController=new AbortController();
     try {
@@ -259,7 +265,9 @@ html,body{background:var(--paper);color:var(--ink)}
       if(!response.body)throw new Error("This browser could not open the response stream. Please try again.");
       const reader=response.body.getReader(),decoder=new TextDecoder();let answer="";
       while(true){const {value,done}=await reader.read();if(done)break;answer+=decoder.decode(value,{stream:true});messages[assistantIndex].content=answer;render();}
-      if(!answer.trim())throw new Error("The AI returned an empty response. Please try again."); archiveCurrent();
+      if(!answer.trim())throw new Error("The AI returned an empty response. Please try again.");
+      if(mode==="coding"){try{localStorage.setItem(buildKey,String(buildsUsed()+1));}catch{}updateBuildQuota();}
+      archiveCurrent();
     } catch(e) {
       if(e.name==="AbortError"){if(!messages[assistantIndex].content)messages.splice(assistantIndex,1);render();return;}
       const msg=e instanceof Error?e.message:"Something went wrong.";
@@ -298,7 +306,7 @@ html,body{background:var(--paper);color:var(--ink)}
       $("loginButton").style.display="none";$("modeLabel").style.display="inline-block";$("profileButton").style.display="inline-flex";updateModeLabel();
     }catch{/* Guests can still use the workspace if auth is unavailable. */}
   }
-  render();renderHistory();updateModeLabel();loadProfile();
+  render();renderHistory();updateModeLabel();updateBuildQuota();loadProfile();
   $("historySearch").addEventListener("input",renderHistory);
   $("searchChatsBtn").addEventListener("click",()=>{$("historySearch").focus();$("sidebar").classList.add("open");});
   $("assistantLink").addEventListener("click",()=>{$("sidebar").classList.remove("open");input.focus();});
