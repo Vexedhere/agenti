@@ -78,6 +78,24 @@ html,body{background:var(--paper);color:var(--ink)}
 .mode-notice span{flex:1}.mode-notice a{color:#c6b2ff;font-weight:800;white-space:nowrap}.mode-notice button{border:0;background:transparent;color:#b4a8d0;font-size:17px}
 @media(max-width:760px){.mode-menu{width:min(350px,calc(100vw - 50px));max-height:55vh}.mode-picker{max-width:100%}}
 
+
+/* Refined SparkAgent visual system */
+.welcome-wrap{max-width:800px}
+.welcome-wrap h1{font-size:clamp(42px,6.5vw,72px);letter-spacing:-3.8px;line-height:1.01}
+.welcome-wrap h1 em{background:linear-gradient(100deg,#b9ff78 5%,#72e8c2 52%,#9aaeff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{border:1px solid #2e4037;box-shadow:inset 0 0 0 1px #b9ff7808}
+.prompt-card{position:relative;overflow:hidden;min-height:78px;padding:15px;border-radius:15px;box-shadow:0 8px 24px #0000000b}
+.prompt-card:after{content:"";position:absolute;inset:auto -20px -34px auto;width:90px;height:90px;border-radius:50%;background:#b9ff7808;pointer-events:none}
+.prompt-card:hover{transform:translateY(-3px);box-shadow:0 13px 28px #0003}
+.prompt-icon{width:38px;height:38px;border:1px solid #3c5147;background:linear-gradient(145deg,#263a31,#202c2b);font-size:18px}
+.composer{border-radius:18px;box-shadow:0 16px 50px #0005}
+.mode-picker{border-radius:12px}
+.mode-menu{backdrop-filter:blur(18px);background:#151d22f5}
+.mode-option{transition:background .15s,border-color .15s,transform .15s}
+.mode-option:hover{transform:translateX(2px)}
+.topbar{backdrop-filter:blur(16px)}
+@media(max-width:760px){.welcome-wrap h1{font-size:clamp(39px,11vw,56px);letter-spacing:-2.5px}.prompt-card{min-height:68px}}
+
 </style>
 </head>
 <body>
