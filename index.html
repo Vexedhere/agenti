@@ -60,6 +60,24 @@ html,body{background:var(--paper);color:var(--ink)}
 .side-bottom{padding-top:12px}
 @media(max-width:760px){.sidebar{background:#151b20}.topbar{background:#101418}.welcome-wrap{padding-top:36px}}
 
+
+.mode-row{position:relative;display:flex;align-items:center;margin:0 0 10px}
+.mode-picker{display:flex;align-items:center;gap:10px;max-width:100%;border:1px solid #344149;border-radius:11px;background:#222b31;color:#edf3f2;padding:8px 11px;text-align:left}
+.mode-picker:hover{background:#2a353b;border-color:#53636b}
+.mode-picker-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:8px;background:#314039;color:#b9ff78;font-size:16px;flex-shrink:0}
+.mode-picker-copy{display:flex;flex-direction:column;gap:3px;min-width:0}.mode-picker-copy strong{font-size:11px;font-weight:800}.mode-picker-copy small{font-size:9px;color:#94a4a8}.mode-picker-caret{color:#91a0a5;margin-left:8px}
+.mode-menu{position:absolute;left:0;bottom:calc(100% + 8px);z-index:15;width:min(350px,calc(100vw - 64px));max-height:min(64vh,490px);overflow:auto;padding:8px;border:1px solid #344149;border-radius:15px;background:#171f24;box-shadow:0 20px 60px #0008}
+.mode-menu[hidden],.mode-notice[hidden]{display:none!important}
+.mode-group{padding:10px 9px 6px;font-size:9px;font-weight:900;letter-spacing:1.4px;color:#809096}
+.mode-option{display:flex;align-items:center;gap:10px;width:100%;padding:9px;border:1px solid transparent;border-radius:10px;background:transparent;color:#e9f1ef;text-align:left;cursor:pointer}
+.mode-option:hover,.mode-option.selected{background:#263139;border-color:#37454d}
+.mode-option-icon{display:grid;place-items:center;width:30px;height:30px;flex-shrink:0;border-radius:9px;background:#25332e;color:#b9ff78;font-size:15px}
+.mode-option-copy{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}.mode-option-copy strong{font-size:11px;font-weight:800}.mode-option-copy small{font-size:9px;color:#92a0a5;line-height:1.35}
+.mode-tier{font-size:8px;letter-spacing:.8px;font-weight:900;padding:5px 6px;border-radius:6px;white-space:nowrap}.mode-tier.free{background:#26382c;color:#b9ff78}.mode-tier.locked{background:#352f42;color:#d2c1ff}
+.mode-notice{display:flex;align-items:center;gap:9px;margin:0 0 10px;padding:10px 11px;border:1px solid #544775;border-radius:10px;background:#241f31;color:#e3d9ff;font-size:11px;line-height:1.45}
+.mode-notice span{flex:1}.mode-notice a{color:#c6b2ff;font-weight:800;white-space:nowrap}.mode-notice button{border:0;background:transparent;color:#b4a8d0;font-size:17px}
+@media(max-width:760px){.mode-menu{width:min(350px,calc(100vw - 50px));max-height:55vh}.mode-picker{max-width:100%}}
+
 </style>
 </head>
 <body>
@@ -67,14 +85,6 @@ html,body{background:var(--paper);color:var(--ink)}
   <aside class="sidebar" id="sidebar">
     <a class="brand" href="#" aria-label="SparkAgent home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2.8 19.4 11l8.8 3.1-8.8 3.2-3.4 8.8-3.2-8.8L4 14.1l8.8-3.1L16 2.8Z" fill="currentColor"/><path d="m25.5 20.5 1.4 3.4 3.1 1.2-3.1 1.1-1.4 3.2-1.2-3.2-3.3-1.1 3.3-1.2 1.2-3.4Z" fill="currentColor"/></svg></span><span>SparkAgent<small>THINK · MAKE · MOVE</small></span></a>
     <button class="newchat" id="newChat"><span>＋</span> New conversation <span style="margin-left:auto;color:#aaa99f;font-size:10px">↵</span></button>
-    <div class="side-label">AI ROUTING</div>
-    <label class="mode-label" for="modelMode">Choose how SparkAgent thinks</label>
-    <select class="mode-select" id="modelMode" aria-label="AI model mode">
-      <option value="auto">✦ Auto · Smart routing</option>
-      <option value="general">✳ Gemini · General chat</option>
-      <option value="quick">⚡ GPT · Quick answers</option>
-      <option value="coding">⌘ Claude · Coding</option>
-    </select>
     <div class="side-label">YOUR SPACE</div>
     <button class="side-link active" id="assistantLink" type="button"><span class="ico">✳</span> AI assistant</button>
     <button class="side-link" id="searchChatsBtn" type="button"><span class="ico">⌕</span> Search conversations</button>
@@ -104,13 +114,33 @@ html,body{background:var(--paper);color:var(--ink)}
         <button class="prompt-card" data-prompt="Help me write something useful and original. Give me a strong first draft and explain what I can improve."><span class="prompt-icon">✎</span><span><strong>Write & create</strong><small>Get a good first draft</small></span><span class="prompt-arrow">↗</span></button>
         <button class="prompt-card" data-prompt="Teach me a topic from the basics with simple examples, then give me a short exercise to check my understanding."><span class="prompt-icon">◎</span><span><strong>Learn something</strong><small>Understand it step by step</small></span><span class="prompt-arrow">↗</span></button>
       </div>
-      <div style="font-size:10px;color:#8e9a9f">No account needed <span style="padding:0 6px">·</span> Gemini for general chat, GPT for quick answers, Claude for code</div>
+      <div style="font-size:10px;color:#8e9a9f">No account needed <span style="padding:0 6px">·</span> Pick a mode that fits the work</div>
     </section>
 
     <section class="chat-area" id="chatArea" aria-live="polite"><div class="messages" id="messages"></div></section>
     <div class="composer-wrap">
       <div class="error" id="errorBox" role="alert"></div>
       <form class="composer" id="composer">
+        <div class="mode-row">
+          <button class="mode-picker" id="modePickerBtn" type="button" aria-expanded="false" aria-controls="modeMenu">
+            <span class="mode-picker-icon">✦</span><span class="mode-picker-copy"><strong id="modeTitle">Auto Pilot</strong><small id="modeSubtitle">Balanced everyday help</small></span><span class="mode-picker-caret">⌄</span>
+          </button>
+          <div class="mode-menu" id="modeMenu" hidden>
+            <div class="mode-group">FREE TO USE</div>
+            <button type="button" class="mode-option selected" data-mode="auto"><span class="mode-option-icon">✦</span><span class="mode-option-copy"><strong>Auto Pilot</strong><small>Balanced everyday help</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="quick"><span class="mode-option-icon">ϟ</span><span class="mode-option-copy"><strong>Quick Reply</strong><small>Short, direct answers</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="study"><span class="mode-option-icon">◎</span><span class="mode-option-copy"><strong>Study Room</strong><small>Learn with examples</small></span><span class="mode-tier free">FREE</span></button>
+            <div class="mode-group">SPARK PRO</div>
+            <button type="button" class="mode-option" data-mode="coding" data-tier="Spark Pro"><span class="mode-option-icon">⌘</span><span class="mode-option-copy"><strong>Build Lab</strong><small>Code, debug and plan builds</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="writer" data-tier="Spark Pro"><span class="mode-option-icon">✎</span><span class="mode-option-copy"><strong>Writer's Desk</strong><small>Drafts and polished writing</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="research" data-tier="Spark Pro"><span class="mode-option-icon">⌕</span><span class="mode-option-copy"><strong>Research Desk</strong><small>Structured analysis</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="deep" data-tier="Spark Pro"><span class="mode-option-icon">◈</span><span class="mode-option-copy"><strong>Deep Think</strong><small>Complex decisions and trade-offs</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <div class="mode-group">SPARK MAX</div>
+            <button type="button" class="mode-option" data-mode="strategist" data-tier="Spark MAX"><span class="mode-option-icon">↗</span><span class="mode-option-copy"><strong>Strategy Studio</strong><small>Plans, priorities and milestones</small></span><span class="mode-tier locked">LOCKED</span></button>
+            <button type="button" class="mode-option" data-mode="creative" data-tier="Spark MAX"><span class="mode-option-icon">✧</span><span class="mode-option-copy"><strong>Creative Studio</strong><small>Fresh concepts and ideas</small></span><span class="mode-tier locked">LOCKED</span></button>
+          </div>
+        </div>
+        <div class="mode-notice" id="modeNotice" hidden><span id="modeNoticeText"></span><a href="https://tiers.sparkagent.in.net">Explore plans ↗</a><button type="button" id="closeModeNotice" aria-label="Dismiss notice">×</button></div>
         <textarea id="promptInput" rows="1" maxlength="12000" placeholder="Ask anything, or tell SparkAgent what you want to build…" aria-label="Message SparkAgent"></textarea>
         <div class="composer-bottom"><span class="hint">Enter to send · Shift + Enter for a new line</span><div class="composer-tools"><button type="button" class="tool-btn" id="voiceInput" title="Speak your message" aria-label="Voice input">⌁</button><button type="submit" class="send-btn" id="sendButton" aria-label="Send message">↑</button></div></div>
       </form>
@@ -122,18 +152,56 @@ html,body{background:var(--paper);color:var(--ink)}
 <script>
 (() => {
   const LOGIN_URL = "https://try.sparkagent.in.net/#auth";
-  const API_URL = "https://try.sparkagent.in.net/api/chat";
+  const API_URL = "https://cvzvpgwovqkplntfztsk.supabase.co/functions/v1/sparkagent-chat";
   const SESSION_URL = "https://try.sparkagent.in.net/api/session";
   const $ = (id) => document.getElementById(id);
   const input = $("promptInput"), form = $("composer"), messagesEl = $("messages");
   let messages = [], busy = false, abortController = null, profile = null, mode = "auto", history = [];
   try { const saved = localStorage.getItem("sparkagent.guest.chat.v2"); if (saved) messages = JSON.parse(saved); } catch {}
   try { const savedHistory = localStorage.getItem("sparkagent.guest.history.v1"); if (savedHistory) history = JSON.parse(savedHistory); } catch {}
-  $("modelMode").addEventListener("change", () => { mode = $("modelMode").value; updateModeLabel(); });
+  const modeDetails = {
+    auto: { title: "Auto Pilot", subtitle: "Balanced everyday help" },
+    quick: { title: "Quick Reply", subtitle: "Short, direct answers" },
+    study: { title: "Study Room", subtitle: "Learn with examples" },
+    coding: { title: "Build Lab", subtitle: "Code, debug and plan builds" },
+    writer: { title: "Writer's Desk", subtitle: "Drafts and polished writing" },
+    research: { title: "Research Desk", subtitle: "Structured analysis" },
+    deep: { title: "Deep Think", subtitle: "Complex decisions and trade-offs" },
+    strategist: { title: "Strategy Studio", subtitle: "Plans, priorities and milestones" },
+    creative: { title: "Creative Studio", subtitle: "Fresh concepts and ideas" }
+  };
   function updateModeLabel() {
-    const names = {auto:"Auto routing",general:"Gemini · General",quick:"GPT · Quick answers",coding:"Claude · Coding"};
-    $("modeLabel").textContent = (names[mode] || names.auto) + (profile ? "" : " · Guest");
+    const details = modeDetails[mode] || modeDetails.auto;
+    $("modeLabel").textContent = details.title + (profile ? "" : " · Guest");
+    $("modeTitle").textContent = details.title;
+    $("modeSubtitle").textContent = details.subtitle;
+    document.querySelectorAll(".mode-option[data-mode]").forEach(btn => btn.classList.toggle("selected", btn.dataset.mode === mode));
   }
+  function showModeNotice(tier) {
+    $("modeNoticeText").textContent = tier + " unlocks this mode.";
+    $("modeNotice").hidden = false;
+  }
+  function hideModeNotice() { $("modeNotice").hidden = true; }
+  $("modePickerBtn").addEventListener("click", () => {
+    const menu = $("modeMenu");
+    menu.hidden = !menu.hidden;
+    $("modePickerBtn").setAttribute("aria-expanded", String(!menu.hidden));
+  });
+  document.querySelectorAll(".mode-option[data-mode]").forEach(btn => btn.addEventListener("click", () => {
+    $("modeMenu").hidden = true;
+    $("modePickerBtn").setAttribute("aria-expanded", "false");
+    if (btn.dataset.tier) { showModeNotice(btn.dataset.tier); return; }
+    mode = btn.dataset.mode || "auto";
+    hideModeNotice();
+    updateModeLabel();
+  }));
+  $("closeModeNotice").addEventListener("click", hideModeNotice);
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".mode-row")) {
+      $("modeMenu").hidden = true;
+      $("modePickerBtn").setAttribute("aria-expanded", "false");
+    }
+  });
   function saveHistory() { try { localStorage.setItem("sparkagent.guest.history.v1", JSON.stringify(history.slice(0,30))); } catch {} }
   function renderHistory() {
     const list = $("historyList"), filter = ($("historySearch").value || "").toLowerCase();
@@ -186,7 +254,7 @@ html,body{background:var(--paper);color:var(--ink)}
     clearError(); messages.push({role:"user",content:value}); messages.push({role:"assistant",content:""});input.value="";input.style.height="auto";render();setBusy(true);
     const assistantIndex=messages.length-1;abortController=new AbortController();
     try {
-      const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},credentials:"include",body:JSON.stringify({messages:messages.slice(0,assistantIndex).slice(-20),mode}),signal:abortController.signal});
+      const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"text/plain"},credentials:"omit",body:JSON.stringify({messages:messages.slice(0,assistantIndex).slice(-20),mode}),signal:abortController.signal});
       if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.error||"SparkAgent could not respond. Please try again.");}
       if(!response.body)throw new Error("This browser could not open the response stream. Please try again.");
       const reader=response.body.getReader(),decoder=new TextDecoder();let answer="";
