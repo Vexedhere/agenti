@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f6f5f1">
+<meta name="theme-color" content="#101418">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2218%22 fill=%22%23b9ff78%22/%3E%3Cpath d=%22m32 7 7 18 18 7-18 7-7 18-7-18-18-7 18-7z%22 fill=%22%23101418%22/%3E%3C/svg%3E">
 <meta name="description" content="SparkAgent — a practical AI workspace. Start in guest mode or sign in to your account.">
 <title>SparkAgent — Your ideas, moving forward</title>
 <style>
@@ -189,7 +190,7 @@ html,body{background:var(--paper);color:var(--ink)}
       if(!response.body)throw new Error("This browser could not open the response stream. Please try again.");
       const reader=response.body.getReader(),decoder=new TextDecoder();let answer="";
       while(true){const {value,done}=await reader.read();if(done)break;answer+=decoder.decode(value,{stream:true});messages[assistantIndex].content=answer;render();}
-      if(!answer.trim())throw new Error("The AI returned an empty response. Please try again.");
+      if(!answer.trim())throw new Error("The AI returned an empty response. Please try again."); archiveCurrent();
     } catch(e) {
       if(e.name==="AbortError"){if(!messages[assistantIndex].content)messages.splice(assistantIndex,1);render();return;}
       const msg=e instanceof Error?e.message:"Something went wrong.";
@@ -234,7 +235,6 @@ html,body{background:var(--paper);color:var(--ink)}
   $("assistantLink").addEventListener("click",()=>{$("sidebar").classList.remove("open");input.focus();});
   $("clearHistoryBtn").addEventListener("click",()=>{if(!confirm("Clear all saved chat history from this browser? This cannot be undone."))return;history=[];messages=[];activeHistoryId=null;try{localStorage.removeItem("sparkagent.guest.history.v1");localStorage.removeItem("sparkagent.guest.chat.v2");}catch{}render();renderHistory();clearError();});
   $("exportChatBtn").addEventListener("click",()=>{if(!messages.length){showError("There is no conversation to export yet.");return;}const text=messages.map(m=>(m.role==="assistant"?"SparkAgent":"You")+":\n"+m.content).join("\n\n");const blob=new Blob([text],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="sparkagent-chat.txt";a.click();URL.revokeObjectURL(url);});
-  const originalSend = send;
   window.addEventListener("beforeunload",()=>{if(messages.some(m=>m.role==="user"&&m.content.trim())){const first=messages.find(m=>m.role==="user"&&m.content.trim());if(first){const item={id:activeHistoryId||String(Date.now()),title:first.content.trim().slice(0,42),messages:JSON.parse(JSON.stringify(messages)),updatedAt:Date.now()};history=[item,...history.filter(x=>x.id!==item.id)].slice(0,30);saveHistory();}}});
 })();
 </script>
