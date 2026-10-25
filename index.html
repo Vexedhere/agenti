@@ -93,6 +93,7 @@ html,body{background:var(--paper);color:var(--ink)}
     <input class="history-search" id="historySearch" type="search" placeholder="Filter recent chats…" aria-label="Filter recent chats">
     <div class="history-list" id="historyList"></div>
     <div class="side-label">ACCOUNT</div>
+    <a class="side-link" href="/tiers.html"><span class="ico">✦</span> Plans & credits</a>
     <a class="side-link" href="https://try.sparkagent.in.net/#auth"><span class="ico">↗</span> Account & sign in</a>
     <div class="side-info"><div class="tiny-title">Your workspace, your way.</div><p>Guest chats stay in this browser. Sign in when you want to connect your account.</p><div class="local-note"><span class="green-dot"></span> Local chat history</div></div>
     <div class="side-bottom"><span class="green-dot"></span><span>Guest mode is ready</span></div>
@@ -129,6 +130,10 @@ html,body{background:var(--paper);color:var(--ink)}
             <div class="mode-group">SPARK FREE · INCLUDED</div>
             <button type="button" class="mode-option selected" data-mode="auto"><span class="mode-option-icon">✦</span><span class="mode-option-copy"><strong>Spark 2.1 · Swift</strong><small>Everyday intelligence · v2.1</small></span><span class="mode-tier free">FREE</span></button>
             <button type="button" class="mode-option" data-mode="quick"><span class="mode-option-icon">ϟ</span><span class="mode-option-copy"><strong>Spark 2.1 · Snap</strong><small>Fast answers · v2.1</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="chat"><span class="mode-option-icon">☻</span><span class="mode-option-copy"><strong>Spark 2.1 · Orbit</strong><small>Natural everyday conversation</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="friendly"><span class="mode-option-icon">☀</span><span class="mode-option-copy"><strong>Spark 2.1 · Cozy</strong><small>Warm, relaxed, human-friendly replies</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="explain"><span class="mode-option-icon">◉</span><span class="mode-option-copy"><strong>Spark 2.2 · Clearview</strong><small>Simple explanations without the jargon</small></span><span class="mode-tier free">FREE</span></button>
+            <button type="button" class="mode-option" data-mode="brainstorm"><span class="mode-option-icon">✧</span><span class="mode-option-copy"><strong>Spark 2.2 · IdeaFlow</strong><small>Casual brainstorming and fresh angles</small></span><span class="mode-tier free">FREE</span></button>
             <button type="button" class="mode-option" data-mode="study"><span class="mode-option-icon">◎</span><span class="mode-option-copy"><strong>Spark 2.2 · Scholaris</strong><small>Guided learning · v2.2</small></span><span class="mode-tier free">FREE</span></button>
             <div class="mode-group">SPARK PRO · ADVANCED WORKSPACE</div>
             <button type="button" class="mode-option" data-mode="coding"><span class="mode-option-icon">⌘</span><span class="mode-option-copy"><strong>Spark 2.4 · Forge</strong><small>3 free coding builds per day</small></span><span class="mode-tier free">3/DAY</span></button>
@@ -140,8 +145,8 @@ html,body{background:var(--paper);color:var(--ink)}
             <button type="button" class="mode-option" data-mode="creative" data-tier="Spark MAX"><span class="mode-option-icon">✧</span><span class="mode-option-copy"><strong>Spark 3.2 · Dreamweave</strong><small>Original concepts and creative exploration</small></span><span class="mode-tier locked">LOCKED</span></button>
           </div>
         </div>
-        <div class="mode-notice" id="buildQuotaNote"><span id="buildQuotaText">Free Forge builds: 3 of 3 available today.</span><a href="https://tiers.sparkagent.in.net">More with Pro ↗</a></div>
-        <div class="mode-notice" id="modeNotice" hidden><span id="modeNoticeText"></span><a href="https://tiers.sparkagent.in.net">Explore plans ↗</a><button type="button" id="closeModeNotice" aria-label="Dismiss notice">×</button></div>
+        <div class="mode-notice" id="buildQuotaNote"><span id="buildQuotaText">Free Forge builds: 3 of 3 available today.</span><a href="/tiers.html">Explore plans ↗</a></div>
+        <div class="mode-notice" id="modeNotice" hidden><span id="modeNoticeText"></span><a href="/tiers.html">Explore plans ↗</a><button type="button" id="closeModeNotice" aria-label="Dismiss notice">×</button></div>
         <textarea id="promptInput" rows="1" maxlength="12000" placeholder="Ask anything, or tell SparkAgent what you want to build…" aria-label="Message SparkAgent"></textarea>
         <div class="composer-bottom"><span class="hint">Enter to send · Shift + Enter for a new line</span><div class="composer-tools"><button type="button" class="tool-btn" id="voiceInput" title="Speak your message" aria-label="Voice input">⌁</button><button type="submit" class="send-btn" id="sendButton" aria-label="Send message">↑</button></div></div>
       </form>
@@ -166,6 +171,10 @@ html,body{background:var(--paper);color:var(--ink)}
   const modeDetails = {
     auto: { title: "Spark 2.1 · Swift", subtitle: "Everyday intelligence · v2.1" },
     quick: { title: "Spark 2.1 · Snap", subtitle: "Fast answers · v2.1" },
+    chat: { title: "Spark 2.1 · Orbit", subtitle: "Natural everyday conversation" },
+    friendly: { title: "Spark 2.1 · Cozy", subtitle: "Warm, relaxed conversation" },
+    explain: { title: "Spark 2.2 · Clearview", subtitle: "Simple explanations, less jargon" },
+    brainstorm: { title: "Spark 2.2 · IdeaFlow", subtitle: "Casual brainstorming and fresh angles" },
     study: { title: "Spark 2.2 · Scholaris", subtitle: "Guided learning · v2.2" },
     coding: { title: "Spark 2.4 · Forge", subtitle: "Free builds: 3 per day" },
     writer: { title: "Spark 2.4 · Quill", subtitle: "Draft, refine and rewrite" },
