@@ -72,6 +72,7 @@ html,body{background:var(--paper);color:var(--ink)}
     <select class="mode-select" id="modelMode" aria-label="AI model mode">
       <option value="auto">✦ Auto · Smart routing</option>
       <option value="general">✳ Gemini · General chat</option>
+      <option value="quick">⚡ GPT · Quick answers</option>
       <option value="coding">⌘ Claude · Coding</option>
     </select>
     <div class="side-label">YOUR SPACE</div>
@@ -103,7 +104,7 @@ html,body{background:var(--paper);color:var(--ink)}
         <button class="prompt-card" data-prompt="Help me write something useful and original. Give me a strong first draft and explain what I can improve."><span class="prompt-icon">✎</span><span><strong>Write & create</strong><small>Get a good first draft</small></span><span class="prompt-arrow">↗</span></button>
         <button class="prompt-card" data-prompt="Teach me a topic from the basics with simple examples, then give me a short exercise to check my understanding."><span class="prompt-icon">◎</span><span><strong>Learn something</strong><small>Understand it step by step</small></span><span class="prompt-arrow">↗</span></button>
       </div>
-      <div style="font-size:10px;color:#8e9a9f">No account needed <span style="padding:0 6px">·</span> Gemini for everyday chat, Claude for code</div>
+      <div style="font-size:10px;color:#8e9a9f">No account needed <span style="padding:0 6px">·</span> Gemini for general chat, GPT for quick answers, Claude for code</div>
     </section>
 
     <section class="chat-area" id="chatArea" aria-live="polite"><div class="messages" id="messages"></div></section>
@@ -130,7 +131,7 @@ html,body{background:var(--paper);color:var(--ink)}
   try { const savedHistory = localStorage.getItem("sparkagent.guest.history.v1"); if (savedHistory) history = JSON.parse(savedHistory); } catch {}
   $("modelMode").addEventListener("change", () => { mode = $("modelMode").value; updateModeLabel(); });
   function updateModeLabel() {
-    const names = {auto:"Auto routing",general:"Gemini · General",coding:"Claude · Coding"};
+    const names = {auto:"Auto routing",general:"Gemini · General",quick:"GPT · Quick answers",coding:"Claude · Coding"};
     $("modeLabel").textContent = (names[mode] || names.auto) + (profile ? "" : " · Guest");
   }
   function saveHistory() { try { localStorage.setItem("sparkagent.guest.history.v1", JSON.stringify(history.slice(0,30))); } catch {} }
