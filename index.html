@@ -8,25 +8,88 @@
 <title>SparkAgent — Your ideas, moving forward</title>
 <style>
 :root{color-scheme:light;--paper:#f6f5f1;--white:#fff;--ink:#20211f;--muted:#797b75;--line:#e5e4dc;--blue:#3159d9;--blue-dark:#2444b6;--lime:#d8f36a;--soft:#efeee8;--max:1120px;--shadow:0 14px 50px #24291a0b}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}body{min-height:100dvh}button,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #3159d966;outline-offset:3px}.app{min-height:100dvh;display:grid;grid-template-columns:250px minmax(0,1fr)}.sidebar{background:#eeede7;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:22px 16px 16px;min-height:100dvh;transition:transform .2s}.brand{display:flex;align-items:center;gap:10px;padding:2px 7px 28px;font-weight:850;font-size:18px;letter-spacing:-.7px}.brand-mark{width:32px;height:32px;border-radius:10px;background:var(--blue);display:grid;place-items:center;color:white;font-weight:900;font-size:18px}.brand small{font-size:9px;letter-spacing:1.4px;color:var(--muted);font-weight:800;display:block;margin-top:1px}.newchat{display:flex;align-items:center;gap:9px;border:1px solid #d9d8d0;background:var(--white);border-radius:12px;padding:12px 13px;font-size:13px;font-weight:750;box-shadow:0 2px 4px #20211f05}.newchat:hover{border-color:#b8b8af;background:#fff}.side-label{margin:27px 9px 10px;color:#96978f;font-size:9px;font-weight:850;letter-spacing:1.5px}.side-link{display:flex;align-items:center;gap:10px;padding:10px 11px;color:#666960;font-size:12px;border-radius:9px;margin:2px 0}.side-link.active{background:#e1e0d8;color:var(--ink);font-weight:750}.side-link .ico{font-size:17px;width:18px;text-align:center}.side-info{margin-top:auto;border:1px solid #deddd5;background:#f6f5f1;border-radius:13px;padding:14px}.side-info .tiny-title{font-size:12px;font-weight:800}.side-info p{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0 0}.side-bottom{padding:15px 5px 0;display:flex;align-items:center;gap:7px;color:#777970;font-size:10px}.green-dot{width:7px;height:7px;border-radius:50%;background:#62a76d}.main{min-width:0;display:flex;flex-direction:column;min-height:100dvh}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,48px);border-bottom:1px solid var(--line);gap:15px}.crumb{display:flex;align-items:center;gap:9px;color:#989990;font-size:12px}.crumb strong{color:var(--ink);font-weight:750}.topright{display:flex;align-items:center;gap:9px}.guest-label{font-size:11px;color:#74766f;background:#ebeae3;padding:7px 10px;border-radius:999px}.login-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;background:var(--blue);color:white;padding:10px 14px;font-size:12px;font-weight:750;box-shadow:0 3px 9px #3159d922}.login-btn:hover{background:var(--blue-dark)}.profile{display:none;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 11px 4px 5px;font-size:12px;font-weight:750;max-width:220px}.profile img{width:29px;height:29px;border-radius:50%;object-fit:cover;background:#e5e5e5}.profile .profile-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.welcome-wrap{width:min(760px,calc(100% - 36px));margin:auto;display:flex;flex-direction:column;justify-content:center;flex:1;padding:54px 0 24px}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#e9e8df;border-radius:6px;padding:7px 10px;width:max-content;color:#62645d;font-size:9px;font-weight:850;letter-spacing:1.4px}.eyebrow b{display:block;width:7px;height:7px;background:var(--blue);border-radius:2px;transform:rotate(45deg)}h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-3.4px;font-weight:780;margin:24px 0 16px;max-width:690px}h1 em{font-style:normal;color:var(--blue)}.subhead{font-size:15px;line-height:1.8;color:#777971;max-width:510px;margin:0 0 30px}.prompt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 20px}.prompt-card{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid #e2e1d9;background:#fbfaf7;border-radius:12px;padding:14px;min-height:68px;transition:transform .15s,border-color .15s,background .15s}.prompt-card:hover{transform:translateY(-2px);border-color:#c9c9bf;background:#fff}.prompt-icon{width:34px;height:34px;border-radius:9px;background:#e9edff;color:var(--blue);display:grid;place-items:center;font-size:16px;flex-shrink:0}.prompt-card strong{display:block;font-size:12px;font-weight:800}.prompt-card small{display:block;font-size:10px;color:#888a82;margin-top:4px}.prompt-arrow{margin-left:auto;color:#a2a39b;font-size:15px}.chat-area{display:none;width:min(820px,calc(100% - 36px));margin:0 auto;flex:1;padding:30px 0 20px}.messages{display:flex;flex-direction:column;gap:25px}.message{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.avatar{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#e5e9fc;color:var(--blue);font-size:12px;font-weight:850;overflow:hidden}.message.user .avatar{background:var(--lime);color:#333b14}.avatar img{width:100%;height:100%;object-fit:cover}.message-label{font-size:11px;font-weight:850;margin:2px 0 8px}.message-text{font-size:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;color:#343630}.message-actions{display:flex;gap:8px;margin-top:10px}.mini-btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 8px;font-size:10px;color:#777970}.typing{display:flex;align-items:center;gap:5px;color:#7b7d74;font-size:11px;padding:8px 0}.typing i{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:pulse .9s infinite alternate}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}@keyframes pulse{to{opacity:.25;transform:translateY(-3px)}}.composer-wrap{position:sticky;bottom:0;width:min(820px,calc(100% - 36px));margin:0 auto;padding:16px 0 12px;background:linear-gradient(0deg,var(--paper) 80%,#f6f5f100);z-index:2}.composer{background:#fff;border:1px solid #deddd5;border-radius:15px;padding:13px 13px 10px;box-shadow:0 8px 30px #20211f08;transition:border-color .15s}.composer:focus-within{border-color:#aeb9ed}.composer textarea{width:100%;min-height:34px;max-height:180px;resize:vertical;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px;line-height:1.65;padding:2px 4px}.composer textarea::placeholder{color:#a1a299}.composer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:7px}.hint{font-size:10px;color:#a1a299}.composer-tools{display:flex;align-items:center;gap:7px}.tool-btn{display:grid;place-items:center;width:32px;height:32px;border:1px solid #e8e7e0;border-radius:9px;background:#faf9f6;color:#686a62;font-size:15px}.tool-btn:hover{background:#f0efe8}.send-btn{display:grid;place-items:center;width:33px;height:33px;border:0;border-radius:9px;background:var(--blue);color:white;font-size:18px}.send-btn:disabled{background:#d8d9d3;color:#9c9e95;cursor:not-allowed}.disclaimer{text-align:center;font-size:9px;color:#a0a198;margin:10px 0 0}.error{display:none;margin:0 0 12px;padding:10px 12px;border-radius:9px;border:1px solid #e9c9c1;background:#fff1ed;color:#9b3c29;font-size:11px;line-height:1.5}.error button{margin-left:8px;border:0;background:none;color:#74301f;text-decoration:underline;font-weight:750}.mobile-menu{display:none;border:1px solid var(--line);background:#fff;border-radius:9px;width:35px;height:35px}.footerline{display:flex;justify-content:center;gap:7px;font-size:9px;color:#aaa99f;padding:0 10px 15px}.hide{display:none!important}@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:20;inset:0 auto 0 0;width:260px;transform:translateX(-102%);box-shadow:15px 0 45px #0001}.sidebar.open{transform:translateX(0)}.mobile-menu{display:grid;place-items:center}.topbar{height:62px;padding:0 14px}.crumb{margin-right:auto}.welcome-wrap{padding-top:42px}.welcome-wrap h1{letter-spacing:-2.2px}.subhead{font-size:14px}.prompt-grid{gap:8px}.prompt-card{padding:11px;gap:8px}.prompt-icon{width:30px;height:30px}.prompt-card small{line-height:1.4}.guest-label{display:none}.chat-area{padding-top:22px}.composer-wrap{padding-bottom:9px}.hint{font-size:9px}}@media(max-width:420px){.prompt-grid{grid-template-columns:1fr}.prompt-card{min-height:58px}.welcome-wrap{padding-top:32px}.topright{gap:6px}.login-btn{padding:9px 10px}.brand{font-size:17px}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}body{min-height:100dvh}button,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #3159d966;outline-offset:3px}.app{min-height:100dvh;display:grid;grid-template-columns:250px minmax(0,1fr)}.sidebar{background:#eeede7;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:22px 16px 16px;min-height:100dvh;transition:transform .2s}.brand{display:flex;align-items:center;gap:10px;padding:2px 7px 28px;font-weight:850;font-size:18px;letter-spacing:-.7px}.brand-mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#a8ff69,#5fe1b6);display:grid;place-items:center;color:#111719;box-shadow:0 5px 18px #7dffb329;flex-shrink:0}.brand-mark svg{width:25px;height:25px}.brand small{font-size:9px;letter-spacing:1.4px;color:var(--muted);font-weight:800;display:block;margin-top:1px}.newchat{display:flex;align-items:center;gap:9px;border:1px solid #d9d8d0;background:var(--white);border-radius:12px;padding:12px 13px;font-size:13px;font-weight:750;box-shadow:0 2px 4px #20211f05}.newchat:hover{border-color:#b8b8af;background:#fff}.side-label{margin:27px 9px 10px;color:#96978f;font-size:9px;font-weight:850;letter-spacing:1.5px}.side-link{display:flex;align-items:center;gap:10px;padding:10px 11px;color:#666960;font-size:12px;border-radius:9px;margin:2px 0}.side-link.active{background:#e1e0d8;color:var(--ink);font-weight:750}.side-link .ico{font-size:17px;width:18px;text-align:center}.side-info{margin-top:auto;border:1px solid #deddd5;background:#f6f5f1;border-radius:13px;padding:14px}.side-info .tiny-title{font-size:12px;font-weight:800}.side-info p{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0 0}.side-bottom{padding:15px 5px 0;display:flex;align-items:center;gap:7px;color:#777970;font-size:10px}.green-dot{width:7px;height:7px;border-radius:50%;background:#62a76d}.main{min-width:0;display:flex;flex-direction:column;min-height:100dvh}.topbar{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,48px);border-bottom:1px solid var(--line);gap:15px}.crumb{display:flex;align-items:center;gap:9px;color:#989990;font-size:12px}.crumb strong{color:var(--ink);font-weight:750}.topright{display:flex;align-items:center;gap:9px}.guest-label{font-size:11px;color:#74766f;background:#ebeae3;padding:7px 10px;border-radius:999px}.login-btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;background:var(--blue);color:white;padding:10px 14px;font-size:12px;font-weight:750;box-shadow:0 3px 9px #3159d922}.login-btn:hover{background:var(--blue-dark)}.profile{display:none;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 11px 4px 5px;font-size:12px;font-weight:750;max-width:220px}.profile img{width:29px;height:29px;border-radius:50%;object-fit:cover;background:#e5e5e5}.profile .profile-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.welcome-wrap{width:min(760px,calc(100% - 36px));margin:auto;display:flex;flex-direction:column;justify-content:center;flex:1;padding:54px 0 24px}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#e9e8df;border-radius:6px;padding:7px 10px;width:max-content;color:#62645d;font-size:9px;font-weight:850;letter-spacing:1.4px}.eyebrow b{display:block;width:7px;height:7px;background:var(--blue);border-radius:2px;transform:rotate(45deg)}h1{font-size:clamp(38px,6vw,64px);line-height:1.02;letter-spacing:-3.4px;font-weight:780;margin:24px 0 16px;max-width:690px}h1 em{font-style:normal;color:var(--blue)}.subhead{font-size:15px;line-height:1.8;color:#777971;max-width:510px;margin:0 0 30px}.prompt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 20px}.prompt-card{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid #e2e1d9;background:#fbfaf7;border-radius:12px;padding:14px;min-height:68px;transition:transform .15s,border-color .15s,background .15s}.prompt-card:hover{transform:translateY(-2px);border-color:#c9c9bf;background:#fff}.prompt-icon{width:34px;height:34px;border-radius:9px;background:#e9edff;color:var(--blue);display:grid;place-items:center;font-size:16px;flex-shrink:0}.prompt-card strong{display:block;font-size:12px;font-weight:800}.prompt-card small{display:block;font-size:10px;color:#888a82;margin-top:4px}.prompt-arrow{margin-left:auto;color:#a2a39b;font-size:15px}.chat-area{display:none;width:min(820px,calc(100% - 36px));margin:0 auto;flex:1;padding:30px 0 20px}.messages{display:flex;flex-direction:column;gap:25px}.message{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.avatar{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#e5e9fc;color:var(--blue);font-size:12px;font-weight:850;overflow:hidden}.message.user .avatar{background:var(--lime);color:#333b14}.avatar img{width:100%;height:100%;object-fit:cover}.message-label{font-size:11px;font-weight:850;margin:2px 0 8px}.message-text{font-size:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;color:#343630}.message-actions{display:flex;gap:8px;margin-top:10px}.mini-btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 8px;font-size:10px;color:#777970}.typing{display:flex;align-items:center;gap:5px;color:#7b7d74;font-size:11px;padding:8px 0}.typing i{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:pulse .9s infinite alternate}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}@keyframes pulse{to{opacity:.25;transform:translateY(-3px)}}.composer-wrap{position:sticky;bottom:0;width:min(820px,calc(100% - 36px));margin:0 auto;padding:16px 0 12px;background:linear-gradient(0deg,var(--paper) 80%,#f6f5f100);z-index:2}.composer{background:#fff;border:1px solid #deddd5;border-radius:15px;padding:13px 13px 10px;box-shadow:0 8px 30px #20211f08;transition:border-color .15s}.composer:focus-within{border-color:#aeb9ed}.composer textarea{width:100%;min-height:34px;max-height:180px;resize:vertical;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px;line-height:1.65;padding:2px 4px}.composer textarea::placeholder{color:#a1a299}.composer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:7px}.hint{font-size:10px;color:#a1a299}.composer-tools{display:flex;align-items:center;gap:7px}.tool-btn{display:grid;place-items:center;width:32px;height:32px;border:1px solid #e8e7e0;border-radius:9px;background:#faf9f6;color:#686a62;font-size:15px}.tool-btn:hover{background:#f0efe8}.send-btn{display:grid;place-items:center;width:33px;height:33px;border:0;border-radius:9px;background:var(--blue);color:white;font-size:18px}.send-btn:disabled{background:#d8d9d3;color:#9c9e95;cursor:not-allowed}.disclaimer{text-align:center;font-size:9px;color:#a0a198;margin:10px 0 0}.error{display:none;margin:0 0 12px;padding:10px 12px;border-radius:9px;border:1px solid #e9c9c1;background:#fff1ed;color:#9b3c29;font-size:11px;line-height:1.5}.error button{margin-left:8px;border:0;background:none;color:#74301f;text-decoration:underline;font-weight:750}.mobile-menu{display:none;border:1px solid var(--line);background:#fff;border-radius:9px;width:35px;height:35px}.footerline{display:flex;justify-content:center;gap:7px;font-size:9px;color:#aaa99f;padding:0 10px 15px}.hide{display:none!important}@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:20;inset:0 auto 0 0;width:260px;transform:translateX(-102%);box-shadow:15px 0 45px #0001}.sidebar.open{transform:translateX(0)}.mobile-menu{display:grid;place-items:center}.topbar{height:62px;padding:0 14px}.crumb{margin-right:auto}.welcome-wrap{padding-top:42px}.welcome-wrap h1{letter-spacing:-2.2px}.subhead{font-size:14px}.prompt-grid{gap:8px}.prompt-card{padding:11px;gap:8px}.prompt-icon{width:30px;height:30px}.prompt-card small{line-height:1.4}.guest-label{display:none}.chat-area{padding-top:22px}.composer-wrap{padding-bottom:9px}.hint{font-size:9px}}@media(max-width:420px){.prompt-grid{grid-template-columns:1fr}.prompt-card{min-height:58px}.welcome-wrap{padding-top:32px}.topright{gap:6px}.login-btn{padding:9px 10px}.brand{font-size:17px}}
+
+/* SparkAgent refresh: deep graphite, vivid mint and clean blue accents */
+:root{color-scheme:dark;--paper:#101418;--white:#1a2026;--ink:#edf2f3;--muted:#99a5aa;--line:#2b343b;--blue:#8ba2ff;--blue-dark:#6f88f3;--lime:#b9ff78;--soft:#20272d;--shadow:0 14px 50px #0004}
+html,body{background:var(--paper);color:var(--ink)}
+.sidebar{background:#151b20;border-right-color:#2a343b}
+.brand{color:#f3f7f6}.brand small{color:#87959b}
+.newchat{background:#222a30;border-color:#37434b;color:#f2f7f7;box-shadow:none}.newchat:hover{background:#2a343b;border-color:#586770}
+.side-label{color:#819097}
+.side-link{color:#aab6bb;background:transparent;border:0;width:100%;text-align:left;font-family:inherit;cursor:pointer}.side-link.active{background:#283238;color:#eff7f3}
+.side-link:hover{background:#222c32;color:#fff}
+.side-info{background:#1a2227;border-color:#303b42}.side-info p{color:#9eacb1}.side-info .tiny-title{color:#e6efed}
+.side-bottom{color:#91a0a5}.green-dot{background:#a8f56e}
+.topbar{border-bottom-color:#293239;background:#101418}.crumb{color:#7f8d93}.crumb strong{color:#e8f0f0}
+.guest-label{background:#202a30;color:#b5c2c5}
+.login-btn{background:#b9ff78;color:#152016;box-shadow:none}.login-btn:hover{background:#a8f566}
+.profile{background:#1b2228;border-color:#344047;color:#e8f0f0}
+.welcome-wrap h1{color:#f1f5f3}.welcome-wrap h1 em{color:#b9ff78}
+.eyebrow{background:#1e2928;color:#a8c2b7}.eyebrow b{background:#b9ff78}
+.subhead{color:#a0adb1}
+.prompt-card{background:#171e23;border-color:#2d383f;color:#edf3f2}.prompt-card:hover{background:#20292f;border-color:#53636b}
+.prompt-icon{background:#26342f;color:#b9ff78}.prompt-card small{color:#91a0a5}.prompt-arrow{color:#8d9ba0}
+.composer{background:#1a2127;border-color:#354149;box-shadow:0 10px 40px #0003}.composer:focus-within{border-color:#7889e8}
+.composer textarea{color:#f0f5f4}.composer textarea::placeholder{color:#819097}
+.composer-wrap{background:linear-gradient(0deg,var(--paper) 80%,#10141800)}
+.tool-btn{background:#222b31;border-color:#364149;color:#c0cccf}.tool-btn:hover{background:#2b363d}
+.send-btn{background:#b9ff78;color:#152016}.send-btn:disabled{background:#37433c;color:#77867b}
+.disclaimer,.hint,.footerline{color:#819097}
+.message-text{color:#dce5e4}.message-label{color:#eaf1f0}.avatar{background:#273a31;color:#b9ff78}.message.user .avatar{background:#b9ff78;color:#172016}
+.mini-btn{background:#1a2228;border-color:#344149;color:#a9b7bb}
+.error{background:#321f21;border-color:#694044;color:#ffb8ae}.error button{color:#ffd2cb}
+.mobile-menu{background:#1a2228;border-color:#354149;color:#edf2f3}
+.mode-label{display:block;font-size:10px;color:#91a0a5;line-height:1.5;margin:0 8px 8px}
+.mode-select{width:100%;border:1px solid #354149;border-radius:10px;background:#20292f;color:#e9f1ef;padding:11px 10px;font:inherit;font-size:11px;outline:none}
+.mode-select:focus{border-color:#b9ff78}
+.history-heading{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.history-heading .side-label{margin-bottom:10px}
+.history-heading button{border:0;background:transparent;color:#839197;font-size:10px;cursor:pointer;margin:0 8px 8px}
+.history-search{width:100%;background:#1d252b;border:1px solid #303b42;border-radius:8px;color:#edf2f3;padding:9px 10px;font:inherit;font-size:11px;outline:none}
+.history-search::placeholder{color:#728188}.history-search:focus{border-color:#7185ed}
+.history-list{display:flex;flex-direction:column;gap:3px;max-height:190px;overflow:auto;margin-top:7px}
+.history-item{display:flex;align-items:center;gap:8px;text-align:left;width:100%;border:0;border-radius:8px;background:transparent;color:#a9b6ba;padding:9px 8px;font:inherit;font-size:11px;cursor:pointer}
+.history-item:hover,.history-item.selected{background:#283238;color:#f2f6f5}
+.history-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.history-empty{font-size:10px;color:#718087;padding:8px}
+.local-note{display:flex;align-items:center;gap:7px;font-size:10px;color:#93a49f;margin-top:12px}
+.local-note .green-dot{flex-shrink:0}
+.side-info{margin-top:14px}
+.side-bottom{padding-top:12px}
+@media(max-width:760px){.sidebar{background:#151b20}.topbar{background:#101418}.welcome-wrap{padding-top:36px}}
+
 </style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#" aria-label="SparkAgent home"><span class="brand-mark">S</span><span>SparkAgent<small>THINK · MAKE · MOVE</small></span></a>
+    <a class="brand" href="#" aria-label="SparkAgent home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2.8 19.4 11l8.8 3.1-8.8 3.2-3.4 8.8-3.2-8.8L4 14.1l8.8-3.1L16 2.8Z" fill="currentColor"/><path d="m25.5 20.5 1.4 3.4 3.1 1.2-3.1 1.1-1.4 3.2-1.2-3.2-3.3-1.1 3.3-1.2 1.2-3.4Z" fill="currentColor"/></svg></span><span>SparkAgent<small>THINK · MAKE · MOVE</small></span></a>
     <button class="newchat" id="newChat"><span>＋</span> New conversation <span style="margin-left:auto;color:#aaa99f;font-size:10px">↵</span></button>
-    <div class="side-label">WORKSPACE</div>
-    <div class="side-link active"><span class="ico">✳</span> AI assistant</div>
+    <div class="side-label">AI ROUTING</div>
+    <label class="mode-label" for="modelMode">Choose how SparkAgent thinks</label>
+    <select class="mode-select" id="modelMode" aria-label="AI model mode">
+      <option value="auto">✦ Auto · Smart routing</option>
+      <option value="general">✳ Gemini · General chat</option>
+      <option value="coding">⌘ Claude · Coding</option>
+    </select>
+    <div class="side-label">YOUR SPACE</div>
+    <button class="side-link active" id="assistantLink" type="button"><span class="ico">✳</span> AI assistant</button>
+    <button class="side-link" id="searchChatsBtn" type="button"><span class="ico">⌕</span> Search conversations</button>
+    <button class="side-link" id="exportChatBtn" type="button"><span class="ico">⇩</span> Export this chat</button>
+    <div class="history-heading"><div class="side-label">RECENT CHATS</div><button id="clearHistoryBtn" type="button" title="Clear local chat history">Clear</button></div>
+    <input class="history-search" id="historySearch" type="search" placeholder="Filter recent chats…" aria-label="Filter recent chats">
+    <div class="history-list" id="historyList"></div>
+    <div class="side-label">ACCOUNT</div>
     <a class="side-link" href="https://try.sparkagent.in.net/#auth"><span class="ico">↗</span> Account & sign in</a>
-    <div class="side-info"><div class="tiny-title">A little room to think.</div><p>Ask questions, shape ideas, write code, or work through something tricky. Start as a guest — no account needed.</p></div>
+    <div class="side-info"><div class="tiny-title">Your workspace, your way.</div><p>Guest chats stay in this browser. Sign in when you want to connect your account.</p><div class="local-note"><span class="green-dot"></span> Local chat history</div></div>
     <div class="side-bottom"><span class="green-dot"></span><span>Guest mode is ready</span></div>
   </aside>
   <main class="main">
     <header class="topbar">
       <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
       <div class="crumb"><span>Workspace</span><span>/</span><strong>AI assistant</strong></div>
-      <div class="topright"><span class="guest-label" id="modeLabel">Guest mode</span><a class="login-btn" id="loginButton" href="https://try.sparkagent.in.net/#auth">Log in <span aria-hidden="true">↗</span></a><button class="profile" id="profileButton" type="button" title="Account"><img id="profilePic" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="><span class="profile-name" id="profileName">Account</span><span>⌄</span></button></div>
+      <div class="topright"><span class="guest-label" id="modeLabel">Auto routing · Guest</span><a class="login-btn" id="loginButton" href="https://try.sparkagent.in.net/#auth">Log in <span aria-hidden="true">↗</span></a><button class="profile" id="profileButton" type="button" title="Account"><img id="profilePic" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="><span class="profile-name" id="profileName">Account</span><span>⌄</span></button></div>
     </header>
 
     <section class="welcome-wrap" id="welcome">
@@ -39,7 +102,7 @@
         <button class="prompt-card" data-prompt="Help me write something useful and original. Give me a strong first draft and explain what I can improve."><span class="prompt-icon">✎</span><span><strong>Write & create</strong><small>Get a good first draft</small></span><span class="prompt-arrow">↗</span></button>
         <button class="prompt-card" data-prompt="Teach me a topic from the basics with simple examples, then give me a short exercise to check my understanding."><span class="prompt-icon">◎</span><span><strong>Learn something</strong><small>Understand it step by step</small></span><span class="prompt-arrow">↗</span></button>
       </div>
-      <div style="font-size:10px;color:#a1a299">No account needed to start <span style="padding:0 6px">·</span> Conversations saved in this browser</div>
+      <div style="font-size:10px;color:#8e9a9f">No account needed <span style="padding:0 6px">·</span> Gemini for everyday chat, Claude for code</div>
     </section>
 
     <section class="chat-area" id="chatArea" aria-live="polite"><div class="messages" id="messages"></div></section>
@@ -61,8 +124,35 @@
   const SESSION_URL = "https://try.sparkagent.in.net/api/session";
   const $ = (id) => document.getElementById(id);
   const input = $("promptInput"), form = $("composer"), messagesEl = $("messages");
-  let messages = [], busy = false, abortController = null, profile = null;
+  let messages = [], busy = false, abortController = null, profile = null, mode = "auto", history = [];
   try { const saved = localStorage.getItem("sparkagent.guest.chat.v2"); if (saved) messages = JSON.parse(saved); } catch {}
+  try { const savedHistory = localStorage.getItem("sparkagent.guest.history.v1"); if (savedHistory) history = JSON.parse(savedHistory); } catch {}
+  $("modelMode").addEventListener("change", () => { mode = $("modelMode").value; updateModeLabel(); });
+  function updateModeLabel() {
+    const names = {auto:"Auto routing",general:"Gemini · General",coding:"Claude · Coding"};
+    $("modeLabel").textContent = (names[mode] || names.auto) + (profile ? "" : " · Guest");
+  }
+  function saveHistory() { try { localStorage.setItem("sparkagent.guest.history.v1", JSON.stringify(history.slice(0,30))); } catch {} }
+  function renderHistory() {
+    const list = $("historyList"), filter = ($("historySearch").value || "").toLowerCase();
+    list.innerHTML = "";
+    const entries = history.filter(item => item.title.toLowerCase().includes(filter));
+    if (!entries.length) { const empty=document.createElement("div");empty.className="history-empty";empty.textContent=history.length?"No matching chats":"Your recent chats will appear here.";list.appendChild(empty);return; }
+    entries.forEach(item => {
+      const b=document.createElement("button");b.type="button";b.className="history-item"+(item.id===activeHistoryId?" selected":"");b.title=item.title;
+      const ico=document.createElement("span");ico.textContent="◷";ico.style.flexShrink="0";
+      const label=document.createElement("span");label.textContent=item.title;b.append(ico,label);
+      b.addEventListener("click",()=>{if(busy)stop();messages=JSON.parse(JSON.stringify(item.messages));activeHistoryId=item.id;save();render();renderHistory();$("sidebar").classList.remove("open");});
+      list.appendChild(b);
+    });
+  }
+  let activeHistoryId = null;
+  function archiveCurrent() {
+    if (!messages.some(m => m.role === "user" && m.content.trim())) return;
+    const first = messages.find(m => m.role === "user" && m.content.trim());
+    const item = {id:activeHistoryId || String(Date.now()),title:first.content.trim().slice(0,42),messages:JSON.parse(JSON.stringify(messages)),updatedAt:Date.now()};
+    history = [item, ...history.filter(x => x.id !== item.id)].slice(0,30);activeHistoryId=item.id;saveHistory();renderHistory();
+  }
   const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   function save() { try { localStorage.setItem("sparkagent.guest.chat.v2", JSON.stringify(messages.slice(-40))); } catch {} }
   function showError(text, retry) { const box=$("errorBox"); box.style.display="block"; box.textContent=text; if(retry){const b=document.createElement("button");b.textContent="Retry";b.onclick=retry;box.appendChild(b);} }
@@ -94,7 +184,7 @@
     clearError(); messages.push({role:"user",content:value}); messages.push({role:"assistant",content:""});input.value="";input.style.height="auto";render();setBusy(true);
     const assistantIndex=messages.length-1;abortController=new AbortController();
     try {
-      const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},credentials:"include",body:JSON.stringify({messages:messages.slice(0,assistantIndex).slice(-20)}),signal:abortController.signal});
+      const response=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},credentials:"include",body:JSON.stringify({messages:messages.slice(0,assistantIndex).slice(-20),mode}),signal:abortController.signal});
       if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.error||"SparkAgent could not respond. Please try again.");}
       if(!response.body)throw new Error("This browser could not open the response stream. Please try again.");
       const reader=response.body.getReader(),decoder=new TextDecoder();let answer="";
@@ -106,7 +196,7 @@
       if(!messages[assistantIndex].content)messages.splice(assistantIndex,1);render();showError(msg,()=>send(value));
     } finally {abortController=null;setBusy(false);render();}
   }
-  function newChat(){if(busy)stop();messages=[];save();clearError();render();input.focus();}
+  function newChat(){if(busy)stop();archiveCurrent();messages=[];activeHistoryId=null;save();clearError();render();renderHistory();input.focus();}
   form.addEventListener("submit",e=>{e.preventDefault();void send();});
   input.addEventListener("input",()=>{input.style.height="auto";input.style.height=Math.min(input.scrollHeight,180)+"px";if(!busy)$("sendButton").disabled=!input.value.trim();});
   input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();void send();}});
@@ -126,7 +216,7 @@
     if(!profile)return;
     if(!confirm("Sign out of SparkAgent on this browser?"))return;
     try{await fetch(SESSION_URL,{method:"DELETE",credentials:"include"});}catch{}
-    profile=null;$("profileButton").style.display="none";$("loginButton").style.display="inline-flex";$("modeLabel").style.display="inline-block";render();
+    profile=null;$("profileButton").style.display="none";$("loginButton").style.display="inline-flex";$("modeLabel").style.display="inline-block";updateModeLabel();render();
   });
   async function loadProfile(){
     try{
@@ -135,10 +225,17 @@
       profile=data.user;
       $("profileName").textContent=profile.username||profile.full_name||profile.email||"Account";
       if(profile.avatar_url){$("profilePic").src=profile.avatar_url;}else{$("profilePic").src="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" rx="20" fill="#3159d9"/><text x="50%" y="56%" text-anchor="middle" font-size="18" fill="white" font-family="Arial">'+(profile.username||"S").charAt(0).toUpperCase()+'</text></svg>');}
-      $("loginButton").style.display="none";$("modeLabel").style.display="none";$("profileButton").style.display="inline-flex";
+      $("loginButton").style.display="none";$("modeLabel").style.display="inline-block";$("profileButton").style.display="inline-flex";updateModeLabel();
     }catch{/* Guests can still use the workspace if auth is unavailable. */}
   }
-  render();loadProfile();
+  render();renderHistory();updateModeLabel();loadProfile();
+  $("historySearch").addEventListener("input",renderHistory);
+  $("searchChatsBtn").addEventListener("click",()=>{$("historySearch").focus();$("sidebar").classList.add("open");});
+  $("assistantLink").addEventListener("click",()=>{$("sidebar").classList.remove("open");input.focus();});
+  $("clearHistoryBtn").addEventListener("click",()=>{if(!confirm("Clear all saved chat history from this browser? This cannot be undone."))return;history=[];messages=[];activeHistoryId=null;try{localStorage.removeItem("sparkagent.guest.history.v1");localStorage.removeItem("sparkagent.guest.chat.v2");}catch{}render();renderHistory();clearError();});
+  $("exportChatBtn").addEventListener("click",()=>{if(!messages.length){showError("There is no conversation to export yet.");return;}const text=messages.map(m=>(m.role==="assistant"?"SparkAgent":"You")+":\n"+m.content).join("\n\n");const blob=new Blob([text],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="sparkagent-chat.txt";a.click();URL.revokeObjectURL(url);});
+  const originalSend = send;
+  window.addEventListener("beforeunload",()=>{if(messages.some(m=>m.role==="user"&&m.content.trim())){const first=messages.find(m=>m.role==="user"&&m.content.trim());if(first){const item={id:activeHistoryId||String(Date.now()),title:first.content.trim().slice(0,42),messages:JSON.parse(JSON.stringify(messages)),updatedAt:Date.now()};history=[item,...history.filter(x=>x.id!==item.id)].slice(0,30);saveHistory();}}});
 })();
 </script>
 </body>
